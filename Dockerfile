@@ -1,17 +1,12 @@
-FROM python:3-alpine
+# syntax=docker/dockerfile:1
 
-MAINTAINER Rishi Raj
-
-COPY ./app/requirements.txt /app/requirements.txt
+FROM python:3.8-slim-buster
 
 WORKDIR /app
 
-RUN apk add --update \
-  && pip install --upgrade pip  \
-  && pip install -r requirements.txt \
-  && rm -rf /var/cache/apk/*
-  
-COPY ./app /app
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
 
-CMD python app.py run -h 0.0.0.0
+COPY . .
 
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
