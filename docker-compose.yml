@@ -1,11 +1,11 @@
 version: "3"
 services:
   flask:
-    build:
-      context: app
-      dockerfile: Dockerfile
+    # build:
+    #   context: app
+    #   dockerfile: Dockerfile
     container_name: flask
-    image: python-docker:latest
+    image: rishi1raj/registry1.com:13
     restart: unless-stopped
     environment:
       APP_ENV: "prod"
